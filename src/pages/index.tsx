@@ -8,7 +8,7 @@ import React from "react";
 const Home: NextPage = () => {
   const user = useUser();
 
-  const {data} = api.posts.getAll.useQuery();
+  const { data } = api.posts.getAll.useQuery();
 
   return (
     <>
@@ -28,7 +28,9 @@ const Home: NextPage = () => {
             {!!user.isSignedIn && <SignOutButton />}
           </div>
           <div className="flex justify-center">
-            {data?.map((post) => (<div key={post.id}>{post.content}</div>))}
+            {data?.map((post) => (
+              <div key={post.id}>{post.content}</div>
+            ))}
           </div>
         </div>
       </main>
