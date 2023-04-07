@@ -9,7 +9,7 @@ import CreatePostWizard from "~/components/CreatePostWizard";
 const Home: NextPage = () => {
   const user = useUser();
 
-  const {data, isLoading} = api.posts.getAll.useQuery();
+  const { data, isLoading } = api.posts.getAll.useQuery();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,7 +38,9 @@ const Home: NextPage = () => {
           </div>
           <div className="flex flex-col justify-center">
             {[...data]?.map((post) => (
-              <div key={post.id} className="p-8 border-b border-slate-400">{post.content}</div>
+              <div key={post.id} className="p-8 border-b border-slate-400">
+                {post.content}
+              </div>
             ))}
           </div>
         </div>
