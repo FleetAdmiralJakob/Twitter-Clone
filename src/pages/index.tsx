@@ -4,6 +4,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import React from "react";
+import CreatePostWizard from "~/components/CreatePostWizard";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -33,7 +34,7 @@ const Home: NextPage = () => {
                 <SignInButton />
               </div>
             )}
-            {!!user.isSignedIn && <SignOutButton />}
+            {!!user.isSignedIn && <CreatePostWizard />}
           </div>
           <div className="flex flex-col justify-center">
             {[...data]?.map((post) => (
