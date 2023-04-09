@@ -1,5 +1,6 @@
 import React from "react";
 import { SignOutButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 
 const CreatePostWizard = () => {
   const { user } = useUser();
@@ -12,10 +13,12 @@ const CreatePostWizard = () => {
 
   return (
     <div className="flex w-full gap-3">
-      <img
+      <Image
         src={user.profileImageUrl}
-        alt="Profile image"
+        alt={`@${user.username}'s profile picture`}
         className="h-14 w-14 rounded-full"
+        width={56}
+        height={56}
       />
       <input
         placeholder="Type something in!"

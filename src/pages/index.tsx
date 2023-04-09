@@ -2,9 +2,10 @@ import { type NextPage } from "next";
 import Head from "next/head";
 
 import { api } from "~/utils/api";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import React from "react";
 import CreatePostWizard from "~/components/CreatePostWizard";
+import PostView from "~/components/PostView";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -37,10 +38,8 @@ const Home: NextPage = () => {
             {!!user.isSignedIn && <CreatePostWizard />}
           </div>
           <div className="flex flex-col justify-center">
-            {[...data]?.map((post) => (
-              <div key={post.id} className="p-8 border-b border-slate-400">
-                {post.content}
-              </div>
+            {[...data]?.map((fullPost) => (
+              <PostView {...fullPost} key={fullPost.post.id} />
             ))}
           </div>
         </div>
