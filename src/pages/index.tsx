@@ -16,10 +16,9 @@ const Home: NextPage = () => {
   api.posts.getAll.useQuery();
 
   // Return empty div if user is not loaded
-  if (!userLoaded ) {
+  if (!userLoaded) {
     return <div />;
   }
-
 
   return (
     <>

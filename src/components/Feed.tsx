@@ -11,8 +11,14 @@ const Feed = () => {
   }
 
   if (!data) {
-    return <div className="absolute top-0 right-0 w-screen h-screen
-                flex justify-center items-center">Something went wrong...</div>;
+    return (
+      <div
+        className="absolute top-0 right-0 w-screen h-screen
+                flex justify-center items-center"
+      >
+        Something went wrong...
+      </div>
+    );
   }
 
   return (
