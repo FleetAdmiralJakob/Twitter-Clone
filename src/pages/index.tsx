@@ -6,19 +6,20 @@ import { SignInButton, useUser } from "@clerk/nextjs";
 import React from "react";
 import CreatePostWizard from "~/components/CreatePostWizard";
 import PostView from "~/components/PostView";
+import { LoadingPage } from "~/components/LoadingSpinner";
+import Feed from "~/components/Feed";
 
 const Home: NextPage = () => {
-  const user = useUser();
+  const { isLoaded: userLoaded, isSignedIn } = useUser();
 
-  const { data, isLoading } = api.posts.getAll.useQuery();
+  // Start fetching asap
+  api.posts.getAll.useQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  // Return empty div if user is not loaded
+  if (!userLoaded ) {
+    return <div />;
   }
 
-  if (!data) {
-    return <div>Something went wrong</div>;
-  }
 
   return (
     <>
@@ -28,20 +29,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex justify-center h-screen">
-        <div className="h-full w-full md:max-w-2xl border-x border-slate-400">
-          <div className="flex border-b border-slate-400 p-4">
-            {!user.isSignedIn && (
+        <div className="h-full w-full md:max-w-2xl border-x border-black dark:border-slate-400">
+          <div className="flex border-b border-black dark:border-slate-400 p-4">
+            {!isSignedIn && (
               <div className="flex justify-center">
                 <SignInButton />
               </div>
             )}
-            {!!user.isSignedIn && <CreatePostWizard />}
+            {isSignedIn && <CreatePostWizard />}
           </div>
-          <div className="flex flex-col justify-center">
-            {[...data]?.map((fullPost) => (
-              <PostView {...fullPost} key={fullPost.post.id} />
-            ))}
-          </div>
+          <Feed />
         </div>
       </main>
     </>

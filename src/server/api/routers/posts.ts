@@ -3,6 +3,7 @@ import { User } from "@clerk/nextjs/dist/api";
 import { clerkClient } from "@clerk/nextjs/api";
 import { TRPCError } from "@trpc/server";
 
+// This is a helper function to filter out the user data we don't want to send to the client
 const filterUserForClient = (user: User) => {
   return {
     id: user.id,
