@@ -11,9 +11,8 @@ const filterUserForClient = (user: User) => {
   };
 };
 
-
 export const postsRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async({ ctx }) => {
+  getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
       take: 100,
     });
@@ -29,16 +28,19 @@ export const postsRouter = createTRPCRouter({
       const author = users.find((user) => user.id === post.authorId);
 
       if (!author || !author.username) {
-        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "Author for post not" })
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Author for post not",
+        });
       }
 
       return {
-      post,
-      author: {
-        ... author,
-        username: author.username,
-      },
-    }
+        post,
+        author: {
+          ...author,
+          username: author.username,
+        },
+      };
     });
   }),
 });
