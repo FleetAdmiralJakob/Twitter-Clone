@@ -5,8 +5,6 @@ import { api } from "~/utils/api";
 import { SignInButton, useUser } from "@clerk/nextjs";
 import React from "react";
 import CreatePostWizard from "~/components/CreatePostWizard";
-import PostView from "~/components/PostView";
-import { LoadingPage } from "~/components/LoadingSpinner";
 import Feed from "~/components/Feed";
 
 const Home: NextPage = () => {

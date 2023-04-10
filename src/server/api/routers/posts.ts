@@ -1,5 +1,5 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { User } from "@clerk/nextjs/dist/api";
+import type { User } from "@clerk/nextjs/dist/api";
 import { clerkClient } from "@clerk/nextjs/api";
 import { TRPCError } from "@trpc/server";
 
