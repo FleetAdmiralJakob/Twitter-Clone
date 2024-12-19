@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    @apply bg-white text-black dark:bg-black dark:text-slate-100
+  @apply bg-white text-black dark:bg-black dark:text-slate-100;
 }
